@@ -34,8 +34,10 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="light">
-      <div className="min-h-[100dvh] bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300">
-        <main className="max-w-md mx-auto min-h-[100dvh] relative overflow-hidden bg-slate-50 dark:bg-slate-950 shadow-xl sm:border-x sm:border-slate-200 dark:sm:border-slate-800 pb-safe flex flex-col selection:bg-sky-500/30">
+      <div className="min-h-[100dvh] bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300 relative isolate">
+        <div className="fixed inset-0 pointer-events-none bg-dot-pattern [mask-image:radial-gradient(ellipse_at_center,white_10%,transparent_70%)] -z-10" />
+        <main className="max-w-md mx-auto min-h-[100dvh] bg-slate-50 dark:bg-slate-950 relative overflow-hidden shadow-xl sm:border-x sm:border-slate-200 dark:sm:border-slate-800 pb-safe flex flex-col selection:bg-sky-500/30">
+          <div className="absolute inset-0 pointer-events-none bg-dot-pattern [mask-image:radial-gradient(ellipse_at_center,white_20%,transparent_80%)] opacity-70" />
           {appState === 'home' && <Home onStart={handleStartTest} />}
           {appState === 'test' && <Test mode={testMode} onComplete={handleFinishTest} onCancel={handleGoHome} />}
           {appState === 'result' && <Result resultId={resultId} onRestart={handleGoHome} />}

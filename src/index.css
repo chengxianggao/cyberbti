@@ -21,3 +21,11 @@ body {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.4) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.dark .bg-dot-pattern {
+  background-image: radial-gradient(rgba(71, 85, 105, 0.5) 1px, transparent 1px);
+}
+

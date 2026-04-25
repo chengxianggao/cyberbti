@@ -13,15 +13,6 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
   const [isMuted, setIsMuted] = useState(false);
   const lastTickRef = useRef(0);
 
-  useEffect(() => {
-    personalities.forEach(p => {
-      if (p.image) {
-        const img = new Image();
-        img.src = p.image;
-      }
-    });
-  }, []);
-
   const handlePan = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const offset = -info.offset.x / 80;
     setDragOffset(offset);
@@ -56,39 +47,9 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
     <div className="min-h-screen w-full flex flex-col font-sans relative selection:bg-blue-500/30">
       
       {/* Background Orbs */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.5, 0.8, 0.5],
-          x: [0, 30, 0],
-          y: [0, -30, 0]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        style={{ willChange: 'transform, opacity' }}
-        className="absolute top-[-10%] left-[10%] w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-slate-300/30 dark:bg-slate-700/10 blur-[100px] pointer-events-none transform-gpu" 
-      />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.4, 0.7, 0.4],
-          x: [0, -40, 0],
-          y: [0, 40, 0]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        style={{ willChange: 'transform, opacity' }}
-        className="absolute top-[30%] right-[-10%] w-[220px] sm:w-[320px] h-[220px] sm:h-[320px] rounded-full bg-slate-200/20 dark:bg-slate-800/20 blur-[100px] pointer-events-none transform-gpu" 
-      />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.15, 1],
-          opacity: [0.3, 0.6, 0.3],
-          x: [0, 20, 0],
-          y: [0, -20, 0]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-        style={{ willChange: 'transform, opacity' }}
-        className="absolute bottom-[-10%] left-[20%] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] rounded-full bg-slate-200/30 dark:bg-slate-800/30 blur-[120px] pointer-events-none transform-gpu" 
-      />
+      <div className="absolute top-[-10%] left-[10%] w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-slate-300/30 dark:bg-slate-700/10 blur-[100px] pointer-events-none transform-gpu" />
+      <div className="absolute top-[30%] right-[-10%] w-[220px] sm:w-[320px] h-[220px] sm:h-[320px] rounded-full bg-slate-200/20 dark:bg-slate-800/20 blur-[100px] pointer-events-none transform-gpu" />
+      <div className="absolute bottom-[-10%] left-[20%] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] rounded-full bg-slate-200/30 dark:bg-slate-800/30 blur-[120px] pointer-events-none transform-gpu" />
 
       {/* Header View */}
       <header className="px-6 py-4 flex justify-between items-center shrink-0 z-20">
@@ -180,7 +141,6 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
                 const scale = isCenter ? 1.03 : 1 - absOffset * 0.12;
                 const zIndex = Math.round(50 - absOffset * 10);
                 const opacity = absOffset > 3.5 ? 0 : Math.max(0, 1 - absOffset * 0.35);
-                const display = absOffset > 4 ? 'none' : 'block';
 
                 const gradients = [
                   'from-blue-500/60 via-blue-500/10 to-indigo-500/10',
@@ -202,7 +162,6 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
                       scale,
                       zIndex,
                       opacity,
-                      display,
                     }}
                     style={{ willChange: 'transform' }}
                     whileTap={{ scale: scale * 0.96 }}
@@ -243,7 +202,8 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
                         <img 
                           src={p.image} 
                           alt={p.chineseName} 
-                          style={{ willChange: 'transform' }}
+                          loading="lazy"
+                          decoding="async"
                           onError={(e) => {
                             e.currentTarget.onerror = null;
                             e.currentTarget.src = `https://api.dicebear.com/7.x/notionists/svg?seed=${p.englishId}Sv`;
