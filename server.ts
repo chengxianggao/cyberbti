@@ -6,13 +6,21 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Force correct MIME types for all JS-like and CSS files globally to avoid octet-stream errors
-  app.use((req, res, next) => {
-    if (req.url.endsWith('.js') || req.url.endsWith('.mjs') || req.url.endsWith('.ts') || req.url.endsWith('.tsx') || req.url.includes('.js?')) {
-      res.setHeader('Content-Type', 'application/javascript');
-    }
-    next();
+  // Add explicit MIME type handling to prevent fallback to octet-stream
+  express.static.mime.define({
+    'application/javascript': ['js', 'mjs', 'cjs', 'ts', 'tsx', 'jsx'],
+    'text/css': ['css'],
+    'image/png': ['png'],
+    'image/jpeg': ['jpg', 'jpeg'],
+    'image/svg+xml': ['svg'],
+    'image/webp': ['webp'],
+    'image/gif': ['gif'],
+    'audio/mpeg': ['mp3'],
+    'audio/wav': ['wav']
   });
+
+  // Ignore favicon requests to prevent SPA routing issues
+  app.get('/favicon.ico', (req, res) => res.status(204).end());
 
   // Proxy route for Gemini API using pure HTTP REST
   app.post("/api/gemini", express.json(), async (req, res) => {
