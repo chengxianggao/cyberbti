@@ -91,8 +91,8 @@ export default function Result({ resultId, onRestart, scores }: { resultId: stri
     <div className="min-h-screen w-full font-sans transition-colors duration-300 relative selection:bg-blue-500/30">
       
       {/* Background Orbs */}
-      <div className="absolute top-[-20%] left-[-20%] w-[70vw] h-[70vw] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-20%] w-[60vw] h-[60vw] rounded-full bg-indigo-500/10 dark:bg-indigo-600/10 blur-[100px] pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-20%] w-[300px] sm:w-[450px] h-[300px] sm:h-[450px] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-20%] w-[280px] sm:w-[400px] h-[280px] sm:h-[400px] rounded-full bg-indigo-500/10 dark:bg-indigo-600/10 blur-[100px] pointer-events-none" />
       
       <div className="h-10 w-full shrink-0 hidden sm:block"></div>
 

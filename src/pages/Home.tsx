@@ -65,7 +65,7 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         style={{ willChange: 'transform, opacity' }}
-        className="absolute top-[-10%] left-[10%] w-[50vw] h-[50vw] rounded-full bg-slate-300/30 dark:bg-slate-700/10 blur-[100px] pointer-events-none transform-gpu" 
+        className="absolute top-[-10%] left-[10%] w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-slate-300/30 dark:bg-slate-700/10 blur-[100px] pointer-events-none transform-gpu" 
       />
       <motion.div 
         animate={{ 
@@ -76,7 +76,7 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         style={{ willChange: 'transform, opacity' }}
-        className="absolute top-[30%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-slate-200/20 dark:bg-slate-800/20 blur-[100px] pointer-events-none transform-gpu" 
+        className="absolute top-[30%] right-[-10%] w-[220px] sm:w-[320px] h-[220px] sm:h-[320px] rounded-full bg-slate-200/20 dark:bg-slate-800/20 blur-[100px] pointer-events-none transform-gpu" 
       />
       <motion.div 
         animate={{ 
@@ -87,7 +87,7 @@ export default function Home({ onStart }: { onStart: (mode: 'normal' | 'deep') =
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 5 }}
         style={{ willChange: 'transform, opacity' }}
-        className="absolute bottom-[-10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-slate-200/30 dark:bg-slate-800/30 blur-[120px] pointer-events-none transform-gpu" 
+        className="absolute bottom-[-10%] left-[20%] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] rounded-full bg-slate-200/30 dark:bg-slate-800/30 blur-[120px] pointer-events-none transform-gpu" 
       />
 
       {/* Header View */}
